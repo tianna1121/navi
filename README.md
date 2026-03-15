@@ -47,12 +47,16 @@ go build -o navi .
 ### 1. 启动 Chrome（开启调试端口）
 
 ```bash
-# macOS
-open -a "Google Chrome" --args --remote-debugging-port=9222
+# macOS (Chrome 145+ 必须指定 user-data-dir)
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
+  --remote-debugging-port=9222 \
+  --user-data-dir=/tmp/navi-chrome-profile
 
 # Linux
-google-chrome --remote-debugging-port=9222
+google-chrome --remote-debugging-port=9222 --user-data-dir=/tmp/navi-chrome-profile
 ```
+
+> ⚠️ Chrome 145+ 要求 `--remote-debugging-port` 必须搭配 `--user-data-dir`（非默认路径），否则端口参数被静默忽略。
 
 ### 2. 使用 Navi
 
@@ -94,6 +98,7 @@ navi storage --local
 | `network` | 获取网络请求 | `--failed` 看 401/500 等失败请求 |
 | `screenshot` | 页面截图 | `--selector` 截取特定元素 |
 | `eval` | 执行 JavaScript | 检查运行时状态 |
+| `fetch` | API 请求（自动认证） | 自动读 token，一行拿 API 数据 |
 | `query` | 查询 DOM 元素 | 提取文本、属性、HTML |
 | `perf` | 性能指标 | 页面加载耗时、DOM 节点数 |
 | `storage` | 查看存储 | localStorage / sessionStorage / cookie |

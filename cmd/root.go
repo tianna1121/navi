@@ -2,18 +2,33 @@ package cmd
 
 import (
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 )
 
+func defaultScreenshotDir() string {
+	if dir := os.Getenv("NAVI_SCREENSHOT_DIR"); dir != "" {
+		return dir
+	}
+	// Check for OpenClaw media dir
+	home, _ := os.UserHomeDir()
+	openclawMedia := filepath.Join(home, ".openclaw", "media")
+	if info, err := os.Stat(openclawMedia); err == nil && info.IsDir() {
+		return openclawMedia
+	}
+	return "/tmp"
+}
+
 var (
-	cdpURL   string
-	tabURL   string
-	tabTitle string
-	tabIndex int
-	jsonOut  bool
-	timeout  int
-	verbose  bool
+	cdpURL        string
+	tabURL        string
+	tabTitle      string
+	tabIndex      int
+	jsonOut       bool
+	timeout       int
+	verbose       bool
+	screenshotDir string
 )
 
 var rootCmd = &cobra.Command{
@@ -38,6 +53,7 @@ func init() {
 	rootCmd.PersistentFlags().BoolVarP(&jsonOut, "json", "j", false, "JSON output")
 	rootCmd.PersistentFlags().IntVar(&timeout, "timeout", 10, "Command timeout in seconds")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Verbose logging")
+	rootCmd.PersistentFlags().StringVar(&screenshotDir, "screenshot-dir", defaultScreenshotDir(), "Default directory for screenshots")
 }
 
 func Execute() error {

@@ -34,7 +34,7 @@ var screenshotCmd = &cobra.Command{
 
 		outPath := screenshotOutput
 		if outPath == "" {
-			outPath = fmt.Sprintf("/tmp/navi-screenshot-%d.png", time.Now().Unix())
+			outPath = fmt.Sprintf("%s/navi-screenshot-%d.png", screenshotDir, time.Now().Unix())
 		}
 
 		if err := os.WriteFile(outPath, buf, 0644); err != nil {

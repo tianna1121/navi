@@ -313,6 +313,7 @@ func (c *Client) Eval(ctx context.Context, tabURL, tabTitle string, tabIndex int
 	params := map[string]interface{}{
 		"expression":    expr,
 		"returnByValue": true,
+		"awaitPromise":  true,
 	}
 
 	result, err := conn.call("Runtime.evaluate", params)
