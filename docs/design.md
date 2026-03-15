@@ -208,7 +208,7 @@ navi screenshot --describe
 **实现方式：**
 - `Page.captureScreenshot` — 截取可视区域或全页面
 - `DOM.getBoxModel` — 获取元素位置用于裁剪
-- 输出路径默认 `/tmp/devtool-screenshot-{timestamp}.png`
+- 输出路径默认 `/tmp/navi-screenshot-{timestamp}.png`
 
 ### 3.5 eval 命令
 
@@ -367,9 +367,9 @@ github.com/spf13/cobra           — CLI 框架
 
 | 平台 | 文件名 | 预计大小 |
 |------|--------|---------|
-| linux/amd64 | `devtool-linux-amd64` | ~10MB |
-| linux/arm64 | `devtool-linux-arm64` | ~10MB |
-| darwin/arm64 | `devtool-darwin-arm64` | ~10MB |
+| linux/amd64 | `navi-linux-amd64` | ~10MB |
+| linux/arm64 | `navi-linux-arm64` | ~10MB |
+| darwin/arm64 | `navi-darwin-arm64` | ~10MB |
 
 ---
 
