@@ -1,0 +1,27 @@
+# Binaries
+navi
+navi-*
+*.exe
+dist/
+
+# Build
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+coverage.out
+coverage.html
+
+# Temp
+*.tmp
+*.log
